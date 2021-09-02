@@ -1,0 +1,30 @@
+@import url(../css/base/button.css);
+@import url(../css/base/input.css);
+@import url(../css/base/table.css);
+@import url(../css/base/pagination.css);
+body {
+    font-family: Notosans-Regular;
+    font-size: 16px;
+    margin: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: Notosans-Regular;
+    src: url('../assets/fonts/notosans-regular.2cb88a13.woff2');
+}
+
+@font-face {
+    font-family: Notosans-Bold;
+    src: url('../assets/fonts/notosans-bold.3ede5aff.woff2');
+}
+
+@font-face {
+    font-family: Notosans-SemiBold;
+    src: url('../assets/fonts/notosans-semibold.df3e6dc4.woff2');
+}
+
+@font-face {
+    font-family: Notosans-Italic;
+    src: url('../assets/fonts/notosans-italic.1c1aaac9.woff2');
+}

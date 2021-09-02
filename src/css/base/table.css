@@ -1,0 +1,206 @@
+table {
+    border-spacing: 0;
+    min-width: 100%;
+    border-color: grey;
+    border-collapse: separate;
+    border-right: none;
+    border-left: none;
+}
+
+thead {
+    min-height: 34px;
+    height: 34px;
+    background-color: #eceef1;
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    vertical-align: middle;
+}
+
+thead th {
+    height: 34px;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+tbody td,
+th {
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right: 0.5px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+    height: 47px;
+}
+
+th,
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.checkbox {
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+}
+
+.checkbox-active {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -1225px -363px;
+}
+
+tbody {
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b8bcc3;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+table.base-table tbody tr:hover td {
+    background-color: #f3f8f8 !important;
+}
+
+table.base-table tbody tr.active {
+    background-color: #f3f8f8 !important;
+    /* color: white; */
+}
+
+table .sticky-cell-body {
+    position: sticky !important;
+    z-index: 2 !important;
+    background-color: white !important;
+    padding-top: 12px;
+    border-right: 1px solid #c7c7c7;
+}
+
+table .sticky-cell-header {
+    position: sticky !important;
+    z-index: 3 !important;
+    background-color: #eceef1 !important;
+    border-right: 1px solid #c7c7c7;
+}
+
+table .outer-cell {
+    background-color: white !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+table .option-header,
+table .row-option {
+    min-width: 120px;
+    border-right: none !important;
+    border-left: 1px dashed #bbbbbb;
+}
+
+table .option-header {
+    border-left: 1px solid #bbbbbb;
+}
+
+table .row-option>div {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+table .row-option>div>div:nth-child(1) {
+    color: #0075c0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+table .row-option>div>button {
+    padding: 6px 8px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 0%;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+table .row-option>div>button[active=true] {
+    border: 1px solid #0075c0;
+    border-radius: 2px;
+}
+
+.no-data {
+    text-align: center;
+    position: sticky;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 16px;
+    background-color: white;
+}
+
+.no-data .no-data-img {
+    /* background-image: url("../../../assets/img/no_data.svg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 50px 50px 30px 50px;
+    height: 74px;
+    width: 132px;
+}
+
+.table-loading {
+    position: relative;
+    position: sticky;
+    left: 0;
+    height: calc(100vh - 300px);
+}
+
+#contextMenuTableRow {
+    transform: translateX(calc(-100% + 24px)) translateY(20px);
+    padding: 2px 1px;
+}
+
+#contextMenuTableRow>div {
+    padding: 5px 10px;
+}
+
+#contextMenuTableRow>div:hover {
+    padding: 5px 10px;
+    background-color: #e8e9ec;
+    color: #08bf1e;
+    cursor: pointer;
+}
+
+.float-right {
+    float: right!important;
+    right: 0;
+    width: 120px;
+    min-width: 120px;
+    top: 0px;
+    padding-top: 5px;
+    border-left: 0.5px solid #c7c7c7;
+}
+
+.float-left {
+    left: 0;
+    min-width: 30px;
+    padding-top: 0;
+}
+
+.float-top {
+    top: 0;
+    position: sticky;
+}

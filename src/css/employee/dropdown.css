@@ -1,0 +1,124 @@
+.c-dropdown {
+    height: 32px;
+    line-height: 32px;
+    background-color: #fff;
+    /* width: 200px; */
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    position: relative;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    width: 100%;
+    width: 403px;
+    height: 32px;
+    position: absolute;
+}
+
+.c-dropdown:active,
+.c-dropdown:focus {
+    border: 1px solid #019160;
+}
+
+.c-dropdown-value {
+    display: block;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+}
+
+.c-dropdown-value i {
+    position: relative;
+    top: 2px;
+}
+
+.c-dropdown-list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    background-color: #fff;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.c-dropdown-item {
+    padding-left: 36px;
+    cursor: pointer;
+}
+
+.c-dropdown-item.active {
+    background-color: #019160;
+    color: #fff;
+    /* background-image: url(../../assets/icon/tick.png); */
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.c-dropdown-item:hover {
+    background-color: #e1e1e1;
+    color: #000;
+}
+
+.icon-up {
+    display: none;
+}
+
+#dropdown-input:checked~.c-dropdown-list {
+    display: block;
+}
+
+#dropdown-input:checked~.c-dropdown-value .icon-down {
+    display: none;
+}
+
+#dropdown-input:checked~.c-dropdown-value .icon-up {
+    display: block;
+}
+
+.icon-down,
+.c-dropdown-list {
+    display: block;
+    z-index: 103;
+}
+
+.icon-down.show,
+.c-dropdown-list.show {
+    display: block;
+}
+
+.c-dropdown-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-down.move-up {
+    transform: rotate(180deg);
+    transition: all 0.1ms;
+    z-index: 101;
+}
+
+.c-dropdown-list.show {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /* box-shadow: 0px 1px 8px 0px; */
+}
+
+.hide {
+    display: none;
+}
+
+.c-dropdown-list {
+    border: 1px solid #e5e5e5;
+    /* box-shadow: 0px 0px 11px 1px #00000061; */
+    z-index: 151;
+}
+
+.fa-chevron-down {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -564px -365px;
+    width: 8px;
+    height: 5px;
+}

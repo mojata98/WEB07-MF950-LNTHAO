@@ -1,0 +1,18 @@
+input {
+    height: 32px;
+    /* width: 270px; */
+    padding-left: 16px;
+    padding-right: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+
+input::placeholder {
+    font-family: Notosans-Italic;
+    font-size: 11px !important;
+}
+
+input:focus {
+    border: 2px solid #019160;
+}

@@ -1,0 +1,125 @@
+.dropdown {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    height: 32px;
+    border: 1px solid #bbbbbb;
+    border-radius: 2px;
+    outline: none;
+    white-space: nowrap;
+}
+
+.dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown:active,
+.dropdown:focus {
+    border-color: #2ca01c;
+}
+
+.dropdown .dropdown-text {
+    padding-left: 16px;
+}
+
+.dropdown .dropdown-icon {
+    position: absolute;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+}
+
+.dropdown-hidden {
+    display: none;
+}
+
+.dropdown .dropdown-data {
+    position: absolute;
+    top: -210px;
+    width: 100%;
+    z-index: 999;
+    border-radius: 4px;
+    padding-bottom: 4px;
+    box-shadow: 0px 8px 8px 0px #ccc;
+    background-color: #fff;
+}
+
+.dropdown .dropdown-data .dropdown-item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.dropdown .dropdown-data .dropdown-item:hover {
+    background-color: #e9ebee;
+    color: #2ca01c;
+}
+
+.dropdown .dropdown-data .dropdown-item-selected {
+    background-color: #2ca01c;
+}
+
+.dropdown .dropdown-data .dropdown-item .dropdown-item-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin: auto 10px;
+    visibility: hidden;
+}
+
+.dropdown-title-header {
+    border: none;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-left: 8px;
+    width: 190px;
+}
+
+.dropdown-filter {
+    margin-left: 12px;
+}
+
+.box-dropdown .dropdown {
+    width: 100%;
+}
+
+.bg {
+    background-color: #2ca01c;
+    color: #fff;
+}
+
+.dropdown-selected {
+    background-color: #2ca01c;
+    color: #fff;
+}
+
+.dropdown .dropdown-data .dropdown-selected:hover {
+    background-color: #2ca01c;
+    color: #fff;
+}
+
+.rotate {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+
+.btn-dropdown {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -560px -359px;
+    width: 12px;
+    height: 12px;
+}
+
+.box-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 12px;
+    background-color: #e0e0e0;
+    border-right: #2ca01c;
+    margin-right: 0;
+}

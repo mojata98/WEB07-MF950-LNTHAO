@@ -1,0 +1,125 @@
+.content-container {
+    width: calc(100% - 200px);
+    height: calc(100vh - 48px);
+    background-color: #f4f5f8;
+    left: 200px;
+    top: 48px;
+    position: absolute;
+}
+
+.content-body {
+    position: absolute;
+    height: calc(100vh - 48px);
+    width: calc(100% - 20px);
+    margin-left: 20px;
+}
+
+.content-scroll {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.content-title {
+    position: absolute;
+    z-index: 29;
+    align-items: center;
+    width: calc(100% - 30px);
+    background-color: #f4f5f8;
+    right: 30px;
+    height: 56px;
+    display: flex;
+}
+
+.title-text {
+    font-size: 20px;
+    font-family: Notosans-Bold;
+}
+
+.content-table {
+    position: absolute;
+    background-color: #ffffff;
+    right: 30px;
+    height: calc(100vh - 56px);
+    width: calc(100% - 30px);
+    display: block;
+    /* overflow: auto; */
+}
+
+.table-tool {
+    position: absolute;
+    top: 56px;
+    height: 30px;
+    width: calc(100% - 30px);
+    padding: 16px 16px 10px 16px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #ffffff;
+}
+
+.input-search {
+    align-items: center;
+    display: flex;
+    width: 270px;
+    height: 32px;
+}
+
+.icon-search {
+    height: 16px;
+    width: 16px;
+    z-index: 10;
+    position: absolute;
+    right: 100px;
+    cursor: pointer;
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -992px -360px;
+}
+
+.icon-refresh {
+    height: 24px;
+    width: 24px;
+    margin-right: 12px;
+    margin-left: 12px;
+    cursor: pointer;
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -423px -199px;
+}
+
+.icon-excell {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -705px -198px;
+}
+
+.table-contain {
+    position: absolute;
+    /* width: 100%; */
+    top: 121px;
+    height: calc(100vh - 177px - 46px);
+    left: 20px;
+    right: 30px;
+    overflow-x: auto;
+    /* overflow-y: hidden; */
+}
+
+.paginations {
+    /* position: -webkit-sticky; */
+    position: absolute;
+    height: 46px;
+    width: calc(100% - 80px);
+    /* background-color: darkgreen; */
+    left: 20px;
+    right: 60px;
+    bottom: 56px;
+    /* top: 656px; */
+    z-index: 100;
+    align-items: center;
+    display: flex;
+}
+
+.hiding {
+    height: 34px;
+    width: 10px;
+    background-color: black;
+}

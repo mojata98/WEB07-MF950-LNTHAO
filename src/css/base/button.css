@@ -1,0 +1,29 @@
+.button {
+    height: 36px;
+    width: fit-content;
+    padding: 8px 20px;
+    border: 1px solid #c7c7c7;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button-add:hover {
+    background-color: #35bf22;
+}
+
+.button-add {
+    background-color: #2ca01c;
+}
+
+.button-cancel:hover {
+    background-color: #d2d3d6;
+    ;
+}
+
+.button-cancel {
+    background-color: #ffffff;
+    color: #111;
+    font-size: 11px;
+    border: 1px solid #8d9096;
+}

@@ -1,0 +1,138 @@
+.title-content {
+    display: flex;
+    position: relative;
+    background: #e6e6e6;
+    height: 82px;
+}
+
+.btn-add-employee {
+    position: absolute;
+    right: 38px;
+    top: 28px;
+}
+
+.toolbar {
+    position: relative;
+    display: flex;
+    height: 56px;
+}
+
+.toolbar-right {
+    display: flex;
+    position: absolute;
+    right: 50px;
+    top: 20px;
+}
+
+.box-search {
+    display: flex;
+    position: relative;
+    margin-right: 16px;
+}
+
+.reload {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -423px -201px;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.reload:hover {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -1098px -90px;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.export {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -704px -200px;
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.export:hover {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -704px -256px;
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+.box-table {
+    background-color: #e6e6e6;
+}
+
+.option-wrapper {
+    position: relative;
+}
+
+.btn-edit,
+.btn-option {
+    margin: auto auto;
+    color: #0075c0;
+    font-weight: 700;
+}
+
+.btn-edit {
+    margin-left: 30px;
+}
+
+.box-option {
+    width: 28px;
+    height: 18px;
+    margin: auto auto;
+    margin-right: 30px;
+    cursor: pointer;
+    margin-left: 3px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.border-box:hover {
+    border: 1px solid #0075c0;
+}
+
+
+/* .border-box:focus {
+    border: 1px solid #0075c0;
+} */
+
+.btn-option {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -891px -359px;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.dropdown-option {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    right: 60px;
+    width: 104px;
+    height: 84px;
+    border: 1px solid #babec5;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.option-item {
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    color: #111111;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.option-item:hover {
+    background-color: #e9ebee;
+    color: #2ca01c;
+}

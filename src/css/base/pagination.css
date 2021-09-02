@@ -1,0 +1,76 @@
+.pagination-left {
+    left: 20px;
+    white-space: nowrap;
+    min-width: 10px;
+    display: flex;
+}
+
+.pagination-right {
+    display: flex;
+    height: 35px;
+    position: absolute;
+    right: 30px;
+}
+
+.combobox-paging {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+}
+
+.previous-page {
+    margin-right: 1rem!important;
+    cursor: pointer;
+}
+
+.page-index {
+    display: flex;
+}
+
+.page-index-number {
+    text-align: center;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.next-page {
+    margin-left: 1rem!important;
+    cursor: pointer;
+}
+
+.disableText {
+    cursor: default!important;
+    color: #9e9e9e;
+}
+
+.unselected {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.active {
+    border: 1px solid #e0e0e0;
+    font-weight: 700;
+}
+
+.paging .active {
+    border: 1px solid #e0e0e0;
+    font-weight: 900;
+}
+
+.paging .disabled {
+    color: #a6a6a6;
+}
+
+.paging li {
+    list-style-type: none;
+}
