@@ -1,0 +1,30 @@
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.deps.json
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\ref\MISA.AMIS.Infrastructure.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.pdb
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.AssemblyInfo.cs
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.CopyComplete
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\ref\MISA.AMIS.Infrastructure.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.deps.json
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\ref\MISA.AMIS.Infrastructure.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Infrastructure.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\bin\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.AssemblyInfo.cs
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.csproj.CopyComplete
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\ref\MISA.AMIS.Infrastructure.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Infrastructure\obj\Debug\net5.0\MISA.AMIS.Infrastructure.pdb

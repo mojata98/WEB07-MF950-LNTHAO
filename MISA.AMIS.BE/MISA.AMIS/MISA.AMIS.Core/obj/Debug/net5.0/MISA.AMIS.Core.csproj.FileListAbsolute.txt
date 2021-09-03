@@ -1,0 +1,28 @@
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.deps.json
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.AssemblyReference.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.Resources.ResourceVnEmployee.resources
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.GenerateResource.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfoInputs.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfo.cs
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.CoreCompileInputs.cache
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\BVCN 88\OneDrive\Desktop\Bài Đánh Giá\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.deps.json
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfo.cs
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.Resources.ResourceCore.resources
