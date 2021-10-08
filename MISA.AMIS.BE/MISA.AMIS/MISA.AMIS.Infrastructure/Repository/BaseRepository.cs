@@ -18,7 +18,7 @@ namespace MISA.AMIS.Infrastructure.Repository
         #region Declare
         IConfiguration _configuration;
         readonly string _connectionString = string.Empty;
-        protected IDbConnection _dbConnection = null;
+        public IDbConnection _dbConnection = null;
         string _tableName;
         #endregion
 
@@ -41,6 +41,7 @@ namespace MISA.AMIS.Infrastructure.Repository
         /// CreatedBy:LNT(27/08)
         public int Add(TEntity entity)
         {
+            _dbConnection.Open();
             // chuỗi chứa tên cột
             var columnsName = string.Empty;
 
@@ -77,8 +78,10 @@ namespace MISA.AMIS.Infrastructure.Repository
             }
             columnsName = columnsName.Remove(columnsName.Length - 1, 1);
             columnsParam = columnsParam.Remove(columnsParam.Length - 1, 1);
+            var transaction = _dbConnection.BeginTransaction();
             var sqlQuery = $"INSERT INTO {_tableName}({columnsName}) VALUES({columnsParam}) ";
-            var result = _dbConnection.Execute(sqlQuery, param: param);
+            var result = _dbConnection.Execute(sqlQuery, transaction: transaction, param: param);
+            transaction.Commit();
             return result;
         }
 
@@ -90,10 +93,13 @@ namespace MISA.AMIS.Infrastructure.Repository
         /// CreatedBy:LNT(27/08)
         public int Delete(Guid entityId)
         {
+            _dbConnection.Open();
+            var transaction = _dbConnection.BeginTransaction();
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@entityIdParam", entityId);
             var sqlQuery = $"DELETE FROM {_tableName} WHERE {_tableName}Id = @entityIdParam";
-            var result = _dbConnection.Execute(sqlQuery, param: parameters);
+            var result = _dbConnection.Execute(sqlQuery, transaction: transaction, param: parameters);
+            transaction.Commit();
             return result;
         }
 
@@ -104,18 +110,9 @@ namespace MISA.AMIS.Infrastructure.Repository
         /// CreatedBy:LNT(27/08)
         public virtual IEnumerable<TEntity> Get()
         {
-            try
-            {
-                // lấy dữ liệu
-                var sqlQuery = $"SELECT * FROM {_tableName}";
-                var entities = _dbConnection.Query<TEntity>(sqlQuery);
-                return entities;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            var sqlQuery = $"SELECT * FROM {_tableName}";
+            var entities = _dbConnection.Query<TEntity>(sqlQuery);
+            return entities;
         }
 
         /// <summary>
@@ -126,20 +123,11 @@ namespace MISA.AMIS.Infrastructure.Repository
         /// CreatedBy:LNT(27/08)
         public TEntity GetById(Guid entityId)
         {
-            try
-            {
-                // 3. lấy dữ liệu
-                var sqlQuery = $"SELECT * FROM {_tableName} WHERE {_tableName}Id = @entityId";
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@entityId", entityId);
-                var entity = _dbConnection.QueryFirstOrDefault<TEntity>(sqlQuery, param: parameters);
-                return entity;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            var sqlQuery = $"SELECT * FROM {_tableName} WHERE {_tableName}Id = @entityId";
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@entityId", entityId);
+            var entity = _dbConnection.QueryFirstOrDefault<TEntity>(sqlQuery, param: parameters);
+            return entity;
         }
 
         /// <summary>
@@ -155,7 +143,7 @@ namespace MISA.AMIS.Infrastructure.Repository
             var entityCurrent = GetById(entityId);
             if (entityCurrent != null)
             {
-                var transaction = _dbConnection.BeginTransaction();
+                
                 var columnsName = string.Empty;
                 var param = new DynamicParameters();
                 var properties = entity.GetType().GetProperties();
@@ -178,7 +166,7 @@ namespace MISA.AMIS.Infrastructure.Repository
 
                 // cắt dấu phẩy cuối chuỗi
                 columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-
+                var transaction = _dbConnection.BeginTransaction();
                 // sửa dữ liệu
                 var sqlQuery = $"UPDATE {_tableName} SET {columnsName} WHERE {_tableName}Id = '{entityId}'";
                 var result = _dbConnection.Execute(sqlQuery, transaction: transaction, param: param);
@@ -189,7 +177,6 @@ namespace MISA.AMIS.Infrastructure.Repository
             {
                 return -1;
             }
-
         }
 
         /// <summary>

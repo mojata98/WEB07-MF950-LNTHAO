@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MISA.AMIS.Api.Resources;
+using MISA.AMIS.Core.Entities;
 using MISA.AMIS.Core.Interfaces.Repository;
 using MISA.AMIS.Core.Interfaces.Service;
+using MISA.AMIS.Core.MISAEnum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,18 +39,29 @@ namespace MISA.AMIS.Api.Controllers
         {
             try
             {
+                var employee = new Employee() { Address = "ha noi" };
                 var entities = _baseRepository.Get();
                 if (entities.Count() > 0)
                 {
-                    return StatusCode(200, entities);
+
+                    var msg = new
+                    {
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_GetData,
+                        data = entities, 
+                        statusCode = EnumServiceResult.Success
+                    };
+                    return StatusCode(200, msg);
                 }
                 else
                 {
                     var msg = new
                     {
-                        userMsg = ResourceApi.User_ErrorMsg_NoContent,
+                        devMsg = ResourceApi.Dev_SuccessMsg_NoContent,
+                        userMsg = ResourceApi.User_SuccessMsg_NoContent,
+                        statusCode = EnumServiceResult.NoContent
                     };
-                    return StatusCode(204, msg);
+                    return StatusCode(200, msg);
                 }
             }
             catch (Exception ex)
@@ -57,6 +70,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -76,15 +90,24 @@ namespace MISA.AMIS.Api.Controllers
                 var entity = _baseRepository.GetById(entityId);
                 if (entity != null)
                 {
-                    return StatusCode(200, entity);
+                    var msg = new
+                    {
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_GetData,
+                        data = entity,
+                        statusCode = EnumServiceResult.Success
+                    };
+                    return StatusCode(200, msg);
                 }
                 else
                 {
                     var msg = new
                     {
-                        userMsg = ResourceApi.User_ErrorMsg_NoContent,
+                        devMsg = ResourceApi.Dev_SuccessMsg_NoContent,
+                        userMsg = ResourceApi.User_SuccessMsg_NoContent,
+                        statusCode = EnumServiceResult.NoContent
                     };
-                    return StatusCode(204, msg);
+                    return StatusCode(200, msg);
                 }
             }
             catch (Exception ex)
@@ -93,6 +116,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -112,11 +136,23 @@ namespace MISA.AMIS.Api.Controllers
                 var serviceResult = _baseService.Add(entity);
                 if (serviceResult.MISACode == Core.MISAEnum.EnumServiceResult.Created)
                 {
-                    return StatusCode(201, serviceResult.Data);
+                    var msg = new
+                    {
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_Add,
+                        statusCode = EnumServiceResult.Created
+                    };
+                    return StatusCode(201, msg);
                 }
                 else
                 {
-                    return BadRequest(serviceResult);
+                    var msg = new
+                    {
+                        devMsg = serviceResult.Message,
+                        userMsg = serviceResult.Data,
+                        statusCode = EnumServiceResult.BadRequest
+                    };
+                    return StatusCode(400, msg);
                 }
             }
             catch (Exception ex)
@@ -125,6 +161,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -149,11 +186,24 @@ namespace MISA.AMIS.Api.Controllers
                     var serviceResult = _baseService.Update(entity, entityId);
                     if (serviceResult.MISACode == Core.MISAEnum.EnumServiceResult.Success)
                     {
-                        return StatusCode(200, serviceResult.Data);
+                        var msg = new
+                        {
+                            devMsg = ResourceApi.Dev_SuccessMsg,
+                            userMsg = ResourceApi.User_SuccessMsg_Update,
+                            rowUpdate = serviceResult.Data,
+                            statusCode = EnumServiceResult.Success
+                        };
+                        return StatusCode(200, msg);
                     }
                     else
                     {
-                        return BadRequest(serviceResult);
+                        var msg = new
+                        {
+                            devMsg = serviceResult.Message,
+                            userMsg = serviceResult.Data,
+                            statusCode = EnumServiceResult.BadRequest
+                        };
+                        return StatusCode(400, msg);
                     }
                 }
                 else
@@ -162,8 +212,9 @@ namespace MISA.AMIS.Api.Controllers
                     {
                         devMsg = ResourceApi.Dev_NotValid_IdEmployee,
                         userMsg = ResourceApi.NotValid_IdEmployee,
+                        statusCode = EnumServiceResult.NotFound
                     };
-                    return StatusCode(500, msg);
+                    return StatusCode(404, msg);
                 }
 
             }
@@ -173,6 +224,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -194,7 +246,28 @@ namespace MISA.AMIS.Api.Controllers
                 if (entityCurrent != null)
                 {
                     var result = _baseRepository.Delete(entityId);
-                    return StatusCode(200, result);
+                    if (result != 0)
+                    {
+                        var msg = new
+                        {
+                            devMsg = ResourceApi.Dev_SuccessMsg,
+                            userMsg = ResourceApi.User_SuccessMsg_Delete,
+                            rowUpdate = result,
+                            statusCode = EnumServiceResult.Success
+                        };
+                        return StatusCode(200, msg);
+                    }
+                    else
+                    {
+                        var msg = new
+                        {
+                            devMsg = ResourceApi.Dev_SuccessMsg,
+                            userMsg = ResourceApi.User_SuccessMsg_Update,
+                            rowUpdate = result,
+                            statusCode = EnumServiceResult.NoContent
+                        };
+                        return StatusCode(204, msg);
+                    }
                 }
                 else
                 {
@@ -202,6 +275,7 @@ namespace MISA.AMIS.Api.Controllers
                     {
                         devMsg = ResourceApi.Dev_NotValid_IdEmployee,
                         userMsg = ResourceApi.NotValid_IdEmployee,
+                        statusCode = EnumServiceResult.InternalServerError
                     };
                     return StatusCode(500, msg);
                 }
@@ -213,6 +287,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }

@@ -4,6 +4,7 @@ using MISA.AMIS.Api.Resources;
 using MISA.AMIS.Core.Entities;
 using MISA.AMIS.Core.Interfaces.Repository;
 using MISA.AMIS.Core.Interfaces.Service;
+using MISA.AMIS.Core.MISAEnum;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +45,14 @@ namespace MISA.AMIS.Api.Controllers
             try
             {
                 var newEmployeeCode = _employeeRepository.NewCode();
-                return StatusCode(200, newEmployeeCode);
+                var msg = new
+                {
+                    devMsg = ResourceApi.Dev_SuccessMsg,
+                    userMsg = ResourceApi.User_SuccessMsg_GetNewCode,
+                    data = newEmployeeCode,
+                    statusCode = EnumServiceResult.Success
+                };
+                return StatusCode(200, msg);
             }
             catch (Exception ex)
             {
@@ -52,6 +60,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -73,13 +82,22 @@ namespace MISA.AMIS.Api.Controllers
                 var employeesFilter = _employeeRepository.GetByPaging(pageIndex, pageSize, keysearch);
                 if (employeesFilter != null)
                 {
-                    return StatusCode(200, employeesFilter);
+                    var msg = new
+                    {
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_GetData,
+                        data = employeesFilter,
+                        statusCode = EnumServiceResult.Success
+                    };
+                    return StatusCode(200, msg);
                 }
                 else
                 {
                     var msg = new
                     {
-                        userMsg = ResourceApi.User_ErrorMsg_NoContent,
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_NoContent,
+                        statusCode = EnumServiceResult.NoContent
                     };
                     return StatusCode(204, msg);
                 }
@@ -90,6 +108,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }
@@ -122,13 +141,22 @@ namespace MISA.AMIS.Api.Controllers
                 serviceResult.Data = urlDownload;
                 if (serviceResult.MISACode == Core.MISAEnum.EnumServiceResult.Success)
                 {
-                    return StatusCode(200, serviceResult);
+                    var msg = new
+                    {
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = serviceResult.Message,
+                        data = serviceResult.Data,
+                        statusCode = EnumServiceResult.Success
+                    };
+                    return StatusCode(200, msg);
                 }
                 else
                 {
                     var msg = new
                     {
-                        userMsg = ResourceApi.User_ErrorMsg_NoContent,
+                        devMsg = ResourceApi.Dev_SuccessMsg,
+                        userMsg = ResourceApi.User_SuccessMsg_NoContent,
+                        statusCode = EnumServiceResult.NoContent
                     };
                     return StatusCode(204, msg);
                 }
@@ -139,6 +167,7 @@ namespace MISA.AMIS.Api.Controllers
                 {
                     devMsg = ex.Message,
                     userMsg = ResourceApi.Exception_ErrorMsg,
+                    statusCode = EnumServiceResult.InternalServerError
                 };
                 return StatusCode(500, msg);
             }

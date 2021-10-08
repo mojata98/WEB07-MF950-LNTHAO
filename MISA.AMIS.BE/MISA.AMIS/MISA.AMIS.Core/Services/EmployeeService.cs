@@ -60,8 +60,8 @@ namespace MISA.AMIS.Core.Services
                     // custom thead bảng excel
                     workSheet.Row(3).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     workSheet.Row(3).Style.Font.Bold = true;
-                    workSheet.Row(3).Style.Font.Name = "Arial";
-                    workSheet.Row(3).Style.Font.Size = 10;
+                    workSheet.Row(3).Style.Font.Name = "Times New Roman";
+                    workSheet.Row(3).Style.Font.Size = 13;
 
                     // set color cho thead
                     workSheet.Cells["A3:I3"].Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -97,11 +97,11 @@ namespace MISA.AMIS.Core.Services
 
                         // custom column stt và column dob
                         workSheet.Cells[row, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                        workSheet.Cells[row, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                        workSheet.Cells[row, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                         // custom cỡ chữ cho row
                         workSheet.Row(row).Style.Font.Name = "Times New Roman";
-                        workSheet.Row(row).Style.Font.Size = 11;
+                        workSheet.Row(row).Style.Font.Size = 13;
                         row++;
                         count++;
                     }

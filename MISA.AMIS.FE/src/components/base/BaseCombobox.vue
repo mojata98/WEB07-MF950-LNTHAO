@@ -77,9 +77,17 @@ export default {
     };
   },
   created() {
+    /**--------------------------------
+     * Lấy dữ liệu đơn vị từ database
+     * CreatedBy: LNT (02/09)
+     */
      this.getDepartment();
   },
   mounted() {
+    /**------------------------------------------
+     * Bắt sự kiện click bất kỳ ra ngoài combobox
+     * CreatedBy: LNT (02/09)
+     */
     document.addEventListener("click", this.close);
   },
   watch: {
@@ -110,8 +118,8 @@ export default {
     getDepartment() {
       var self = this;
       axios.get(URL_DEPARTMENT).then((res) => {
-        self.departments = res.data;
-        self.options = res.data;
+        self.departments = res.data.data;
+        self.options = res.data.data;
       });
     },
 
@@ -132,11 +140,11 @@ export default {
      */
     searchByKeysearch() {
       if (this.isSearching) {
-        // mở dropdown
+        // mở combobox
         this.isHiddenCombobox = false;
         this.isRotate = true;
       } else {
-        // đóng dropdown
+        // đóng combobox
         this.isHiddenCombobox = true;
         this.isRotate = false;
       }

@@ -25,9 +25,9 @@
     position: absolute;
     z-index: 29;
     align-items: center;
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
     background-color: #f4f5f8;
-    right: 30px;
+    right: 20px;
     height: 56px;
     display: flex;
 }
@@ -40,11 +40,10 @@
 .content-table {
     position: absolute;
     background-color: #ffffff;
-    right: 30px;
+    right: 20px;
     height: calc(100vh - 56px);
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
     display: block;
-    /* overflow: auto; */
 }
 
 .table-tool {
@@ -85,11 +84,27 @@
     background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -423px -199px;
 }
 
+.icon-refresh:hover {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -1096px -86px;
+}
+
+.icon-refresh:focus {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -1096px -86px;
+}
+
 .icon-excell {
     height: 24px;
     width: 24px;
     cursor: pointer;
     background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -705px -198px;
+}
+
+.icon-excell:hover {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -705px -254px;
+}
+
+.icon-excell:focus {
+    background: url('../../assets/img/Sprites.64af8f61.svg') no-repeat -705px -254px;
 }
 
 .table-contain {

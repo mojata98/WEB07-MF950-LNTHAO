@@ -148,7 +148,7 @@
                   >
                     <div class="m-title"><b>Giới tính </b></div>
                     <div class="gender-group">
-                      <div tabindex="4" style="outline-color: #2ca01c;">
+                      <div tabindex="4" style="outline-color: #2ca01c">
                         <input
                           id="male"
                           name="gender"
@@ -159,7 +159,7 @@
                         />
                       </div>
                       <label for="male" class="radio-label">Nam</label>
-                      <div tabindex="5" style="outline-color: #2ca01c;">
+                      <div tabindex="5" style="outline-color: #2ca01c">
                         <input
                           id="female"
                           name="gender"
@@ -170,7 +170,7 @@
                         />
                       </div>
                       <label for="female" class="radio-label">Nữ</label>
-                      <div tabindex="6" style="outline-color: #2ca01c;">
+                      <div tabindex="6" style="outline-color: #2ca01c">
                         <input
                           id="other"
                           name="gender"
@@ -330,7 +330,7 @@
               tabindex="19"
               class="button button-cancel"
               @click="exitForm"
-              style="outline-color: #111"
+              style="outline-color: #c7c7c7"
             >
               <b>Hủy</b>
             </button>
@@ -339,7 +339,7 @@
             <button
               tabindex="20"
               class="button button-cancel"
-              style="margin-right: 10px; outline-color: #111"
+              style="margin-right: 10px; outline-color: #c7c7c7"
               @click="save"
             >
               <b>Cất</b>
@@ -347,7 +347,7 @@
             <button
               tabindex="21"
               class="button button-add"
-              style="outline-color: #111"
+              style="outline-color: #c7c7c7"
               @click="saveAndCreate"
             >
               <b>Cất và Thêm</b>
@@ -366,7 +366,8 @@ import "vue2-datepicker/index.css";
 import BaseCombobox from "../components/base/BaseCombobox.vue";
 import axios from "axios";
 import eventBus from "../eventBus";
-import { URL } from "../resources/const";
+import { URL, MESSAGE, TITLE_TEXT_POPUP } from "../resources/const";
+import { EMPLOYEEFORM_STATE, STATUS_CODE } from "../resources/enum";
 extend("required", {
   validate(value) {
     return {
@@ -382,7 +383,7 @@ export default {
     return {
       employee: {}, // Thông tin nhân viên
       employees: {}, // Mảng thông tin toàn bộ NV trong DB
-      dataNull: "", // Dữ liệu bị trống
+      titleName: "", // Dữ liệu bị trống
       id: "", // ID gán để sửa
       modeChild: 0, // Mode ở form
       employeeOriginalAdd: {}, // Object ban đầu khi modeChild = 0
@@ -417,26 +418,26 @@ export default {
      */
     eventBus.$on("fixInfor", (value) => {
       let vm = this;
-      this.modeChild = 1;
+      this.modeChild = EMPLOYEEFORM_STATE.EDIT;
       this.id = value;
       axios
         .get(`${URL}/${value}`)
         .then((res) => {
-          vm.employee = res.data;
+          vm.employee = res.data.data;
           console.log(vm.employee);
         })
         .catch((res) => {
           console.log(res);
         });
     });
-    
+
     /**---------------------------------------------
      * Gửi thông tin nhân viên cần nhân bản lên Form
      * CreatedBy: LNT (02/09)
      */
     eventBus.$on("cloneEmployee", (value) => {
       this.employee = value;
-      this.modeChild = 0;
+      this.modeChild = EMPLOYEEFORM_STATE.ADD;
       this.autoNewEmployeeCode();
     });
 
@@ -444,53 +445,50 @@ export default {
      * Nhận sự kiện lưu dữ liệu bị thay đổi
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("closePopupAndSave", () =>{
+    eventBus.$on("closePopupAndSave", () => {
       this.$refs.modal_form.validate().then(async (success) => {
         if (!success) {
           if (!this.employee.EmployeeCode) {
-            this.dataNull = "Mã nhân viên";
-            eventBus.$emit("invalidData", this.dataNull);
+            this.titleName = TITLE_TEXT_POPUP.EMPLOYEECODE;
+            eventBus.$emit("invalidData", this.titleName);
             return;
           } else if (!this.employee.FullName) {
-            this.dataNull = "Tên nhân viên";
-            eventBus.$emit("invalidData", this.dataNull);
+            this.titleName = TITLE_TEXT_POPUP.FULLNAME;
+            eventBus.$emit("invalidData", this.titleName);
             return;
-          } 
-          else if (!this.employee.DepartmentId){
-            this.dataNull = "Đơn vị";
-            eventBus.$emit("invalidData", this.dataNull);
+          } else if (!this.employee.DepartmentId) {
+            this.titleName = TITLE_TEXT_POPUP.DEPARTMENT;
+            eventBus.$emit("invalidData", this.titleName);
             return;
           }
-        } 
-          if (this.modeChild == 0) {
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              await this.addNewEmployee();
-              this.$emit("closeForm");
-              this.$emit("reloadTableAndFilter");
-              this.employee = {};
-              this.$refs.modal_form.reset();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }
+        }
+        if (this.modeChild == EMPLOYEEFORM_STATE.ADD) {
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            await this.addNewEmployee();
+            this.$emit("closeForm");
+            this.$emit("reloadTableAndFilter");
+            this.employee = {};
+            this.$refs.modal_form.reset();
           } else {
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              this.updateEmployee();
-              this.$emit("closeForm");
-              this.$emit("reloadTableAndFilter");
-              this.$refs.modal_form.reset();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }  
+            eventBus.$emit("duplicateEmployeeCode");
           }
+        } else {
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            this.updateEmployee();
+            this.$emit("closeForm");
+            this.$emit("reloadTableAndFilter");
+            this.$refs.modal_form.reset();
+          } else {
+            eventBus.$emit("duplicateEmployeeCode");
+          }
+        }
       });
     });
     /**
      * Nhận sự kiện resetForm từ popup mode 4
      * CreatedBy: LNT (03/09)
      */
-    eventBus.$on("resetForm", () =>{
+    eventBus.$on("resetForm", () => {
       this.$refs.modal_form.reset();
     });
   },
@@ -505,8 +503,8 @@ export default {
       this.$refs.modal_form.reset();
     },
     /**---------------------------------------------------
-     * Gán value cho deapartmentId
-     * CreatedBy : LQNHAT(30/08/2021)
+     * Gán value cho DepartmentId
+     * CreatedBy : LNT(30/08/2021)
      */
     getValueDepartment(value) {
       this.employee.DepartmentId = value;
@@ -519,42 +517,39 @@ export default {
       this.$refs.modal_form.validate().then(async (success) => {
         if (!success) {
           if (!this.employee.EmployeeCode) {
-            this.dataNull = "Mã nhân viên";
-            eventBus.$emit("invalidData", this.dataNull);
+            this.titleName = TITLE_TEXT_POPUP.EMPLOYEECODE;
+            eventBus.$emit("invalidData", this.titleName);
             return;
           } else if (!this.employee.FullName) {
-            this.dataNull = "Tên nhân viên";
-            eventBus.$emit("invalidData", this.dataNull);
+            this.titleName = TITLE_TEXT_POPUP.FULLNAME;
+            eventBus.$emit("invalidData", this.titleName);
             return;
-          } 
-          else if (!this.employee.DepartmentId){
-            this.dataNull = "Đơn vị";
-            eventBus.$emit("invalidData", this.dataNull);
+          } else if (!this.employee.DepartmentId) {
+            this.titleName = TITLE_TEXT_POPUP.DEPARTMENT;
+            eventBus.$emit("invalidData", this.titleName);
             return;
           }
-        } 
-          if (this.modeChild == 0) {
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              await this.addNewEmployee();
-              this.$emit("closeForm");
-              this.$emit("reloadTableAndFilter");
-              this.employee = {};
-              this.$refs.modal_form.reset();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }
+        }
+        if (this.modeChild == EMPLOYEEFORM_STATE.ADD) {
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            await this.addNewEmployee();
+            this.$emit("closeForm");
+            this.$emit("reloadTableAndFilter");
+            this.employee = {};
+            this.$refs.modal_form.reset();
           } else {
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              this.updateEmployee();
-              this.$emit("closeForm");
-              this.$emit("reloadTableAndFilter");
-              this.$refs.modal_form.reset();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }  
+            eventBus.$emit("duplicateEmployeeCode");
           }
+        } else {
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            this.updateEmployee();
+            this.$emit("closeForm");
+            this.$emit("reloadTableAndFilter");
+            this.$refs.modal_form.reset();
+          } else {
+            eventBus.$emit("duplicateEmployeeCode");
+          }
+        }
       });
     },
 
@@ -563,64 +558,60 @@ export default {
      * CreatedBy: LNT (01/09)
      */
     async saveAndCreate() {
-      if (this.modeChild == 0) {
+      if (this.modeChild == EMPLOYEEFORM_STATE.ADD) {
         this.$refs.modal_form.validate().then(async (success) => {
           if (!success) {
             if (!this.employee.EmployeeCode) {
-              this.dataNull = "Mã nhân viên";
-              eventBus.$emit("invalidData", this.dataNull);
+              this.titleName = TITLE_TEXT_POPUP.EMPLOYEECODE;
+              eventBus.$emit("invalidData", this.titleName);
               return;
             } else if (!this.employee.FullName) {
-              this.dataNull = "Tên nhân viên";
-              eventBus.$emit("invalidData", this.dataNull);
+              this.titleName = TITLE_TEXT_POPUP.FULLNAME;
+              eventBus.$emit("invalidData", this.titleName);
               return;
-            } 
-            else if (!this.employee.DepartmentId){
-              this.dataNull = "Đơn vị";
-              eventBus.$emit("invalidData", this.dataNull);
+            } else if (!this.employee.DepartmentId) {
+              this.titleName = TITLE_TEXT_POPUP.DEPARTMENT;
+              eventBus.$emit("invalidData", this.titleName);
               return;
             }
-          } 
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              await this.addNewEmployee();
-              this.employee = {};
-              this.$refs.modal_form.reset();
-              this.employee.Gender = 1;
-              this.autoNewEmployeeCode();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }
+          }
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            await this.addNewEmployee();
+            this.employee = {};
+            this.$refs.modal_form.reset();
+            this.employee.Gender = 1;
+            this.autoNewEmployeeCode();
+          } else {
+            eventBus.$emit("duplicateEmployeeCode");
+          }
         });
       } else {
         this.$refs.modal_form.validate().then(async (success) => {
           if (!success) {
             if (!this.employee.EmployeeCode) {
-              this.dataNull = "Mã nhân viên";
-              eventBus.$emit("invalidData", this.dataNull);
+              this.titleName = TITLE_TEXT_POPUP.EMPLOYEECODE;
+              eventBus.$emit("invalidData", this.titleName);
               return;
             } else if (!this.employee.FullName) {
-              this.dataNull = "Tên nhân viên";
-              eventBus.$emit("invalidData", this.dataNull);
+              this.titleName = TITLE_TEXT_POPUP.FULLNAME;
+              eventBus.$emit("invalidData", this.titleName);
               return;
-            } 
-            else if (!this.employee.DepartmentId){
-              this.dataNull = "Đơn vị";
-              eventBus.$emit("invalidData", this.dataNull);
+            } else if (!this.employee.DepartmentId) {
+              this.titleName = TITLE_TEXT_POPUP.DEPARTMENT;
+              eventBus.$emit("invalidData", this.titleName);
               return;
             }
-          } 
-            if (await this.checkDuplicateEmployeeCode() == 0){
-              await this.updateEmployee();
-              this.modeChild = 0;
-              this.employee = {};
-              this.$refs.modal_form.reset();
-              this.employee.Gender = 1;
-              this.autoNewEmployeeCode();
-            }
-            else{
-              eventBus.$emit("duplicateEmployeeCode");
-            }
+          }
+          if ((await this.checkDuplicateEmployeeCode()) == 0) {
+            await this.updateEmployee();
+            this.modeChild = 0;
+            this.employee = {};
+            this.$refs.modal_form.reset();
+            this.employee.Gender = 1;
+            this.autoNewEmployeeCode();
+          } else {
+            eventBus.$emit("duplicateEmployeeCode");
+          }
         });
       }
     },
@@ -635,6 +626,7 @@ export default {
 
     /**-----------------
      * Hiển thị Popup
+     * CreatedBy: LNT (01/09)
      */
     showPopup() {
       this.hidePopup = false;
@@ -690,15 +682,26 @@ export default {
     async bindDataToForm() {
       var self = this;
       // call api
-      await axios
-        .get(URL + `/${self.employeeId}`)
-        .then((res) => {
-          self.employee = res.data;
-          Object.assign(this.employeeOriginalEdit,this.employee);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        await axios
+          .get(URL + `/${self.employeeId}`)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              self.employee = res.data;
+              Object.assign(this.employeeOriginalEdit, this.employee);
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error);
+      }
       self.$nextTick(() => self.$refs.EmployeeCode.focus());
     },
 
@@ -709,16 +712,30 @@ export default {
     async autoNewEmployeeCode() {
       this.$nextTick(() => this.$refs.EmployeeCode.focus());
       let self = this;
-      await axios
-        .get(URL + `/newEmployeeCode`)
-        .then((res) => {
-          self.$set(self.employee, "EmployeeCode", res.data);
-          self.employeeOriginalAdd.Gender = 1;
-          self.employeeOriginalAdd.EmployeeCode = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        await axios
+          .get(URL + `/newEmployeeCode`)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              self.$set(self.employee, "EmployeeCode", res.data.data);
+              self.employeeOriginalAdd.Gender = 1;
+              self.employeeOriginalAdd.EmployeeCode = res.data.data;
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     /**-------------------------
@@ -727,42 +744,67 @@ export default {
      */
     async addNewEmployee() {
       var vm = this;
-      await axios
-        .post(URL, vm.employee)
-        .then((res) => {
-          this.$toast.success("Thêm mới thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
+      try {
+        await axios
+          .post(URL, vm.employee)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.CREATED) {
+              this.$toast.success(MESSAGE.ADD_MSG_SUCCESS, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+            } else if (res.data.statusCode == STATUS_CODE.BAD_REQUEST) {
+              if (!this.employee.EmployeeCode) {
+                this.titleName = TITLE_TEXT_POPUP.EMPLOYEECODE;
+                eventBus.$emit("invalidData", this.titleName);
+                return;
+              } else if (!this.employee.FullName) {
+                this.titleName = TITLE_TEXT_POPUP.FULLNAME;
+                eventBus.$emit("invalidData", this.titleName);
+                return;
+              } else if (!this.employee.DepartmentId) {
+                this.titleName = TITLE_TEXT_POPUP.DEPARTMENT;
+                eventBus.$emit("invalidData", this.titleName);
+                return;
+              }
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch((res) => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 5000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.6,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false,
+            });
+            console.log(res);
           });
-          console.log(res);
-        })
-        .catch((res) => {
-          this.$toast.error("Thêm mới không thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
-          });
-          console.log(res);
-        });
+      } catch (error) {
+        console.log(error);
+      }
+
       this.$emit("reloadTableAndFilter");
     },
 
@@ -772,54 +814,95 @@ export default {
      */
     async updateEmployee() {
       let vm = this;
-      await axios
-        .put(`${URL}/${vm.id}`, vm.employee)
-        .then((res) => {
-          this.$toast.success("Sửa thông tin thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
+      try {
+        await axios
+          .put(`${URL}/${vm.id}`, vm.employee)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              this.$toast.success(MESSAGE.EDIT_MSG_SUCCESS, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+            } else if (res.data.statusCode == STATUS_CODE.NOT_FOUND) {
+              this.$toast.warning(MESSAGE.DATA_EMPTY, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
           });
-          console.log(res);
-        })
-        .catch((res) => {
-          console.log(res);
-        });
+      } catch (error) {
+        console.log(error);
+      }
       this.$emit("reloadTableAndFilter");
     },
     /**---------------------------
      * Check trùng mã nhân viên - Trả về 1: Trùng mã; Trả về 0: Không trùng mã
      * CreatedBy: LNT (02/09)
      */
-    async checkDuplicateEmployeeCode()
-    {
+    async checkDuplicateEmployeeCode() {
       var self = this;
       var result = 0;
-      await axios
-        .get(URL)
-        .then((res) => {
-          self.employees = res.data;
-          self.employees.forEach((item) => {
-            if (
-              self.employee.EmployeeCode == item.EmployeeCode &&
-              self.employee.EmployeeId != item.EmployeeId
-            ) {
-              result = result + 1;
+      try {
+        await axios
+          .get(URL)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              self.employees = res.data.data;
+              self.employees.forEach((item) => {
+                if (
+                  self.employee.EmployeeCode == item.EmployeeCode &&
+                  self.employee.EmployeeId != item.EmployeeId
+                ) {
+                  result = result + 1;
+                }
+              });
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
             }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
           });
-        })
-        .catch((res) => {
-          console.log(res);
-        });
+      } catch (error) {
+        console.log(error);
+      }
       return result;
     },
   },

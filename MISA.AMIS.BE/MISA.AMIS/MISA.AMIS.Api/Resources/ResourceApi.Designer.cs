@@ -97,24 +97,6 @@ namespace MISA.AMIS.Api.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email không đúng định dạng.
-        /// </summary>
-        public static string Dev_ErrorMsg_FormatEmail {
-            get {
-                return ResourceManager.GetString("Dev_ErrorMsg_FormatEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email không được phép null.
-        /// </summary>
-        public static string Dev_ErrorMsg_Null_Email {
-            get {
-                return ResourceManager.GetString("Dev_ErrorMsg_Null_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to FullName không được phép null.
         /// </summary>
         public static string Dev_ErrorMsg_Null_FullName {
@@ -151,6 +133,24 @@ namespace MISA.AMIS.Api.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thực hiện thành công.
+        /// </summary>
+        public static string Dev_SuccessMsg {
+            get {
+                return ResourceManager.GetString("Dev_SuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có dữ liệu trong database.
+        /// </summary>
+        public static string Dev_SuccessMsg_NoContent {
+            get {
+                return ResourceManager.GetString("Dev_SuccessMsg_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ cho MISA.
         /// </summary>
         public static string Exception_ErrorMsg {
@@ -183,15 +183,6 @@ namespace MISA.AMIS.Api.Resources {
         public static string User_ErrorMsg_FormatEmail {
             get {
                 return ResourceManager.GetString("User_ErrorMsg_FormatEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Không có dữ liệu.
-        /// </summary>
-        public static string User_ErrorMsg_NoContent {
-            get {
-                return ResourceManager.GetString("User_ErrorMsg_NoContent", resourceCulture);
             }
         }
         
@@ -255,6 +246,60 @@ namespace MISA.AMIS.Api.Resources {
         public static string User_ErrorMsg_Null_PositionCode {
             get {
                 return ResourceManager.GetString("User_ErrorMsg_Null_PositionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thêm mới thành công.
+        /// </summary>
+        public static string User_SuccessMsg_Add {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa dữ liệu thành công.
+        /// </summary>
+        public static string User_SuccessMsg_Delete {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy dữ liệu thành công.
+        /// </summary>
+        public static string User_SuccessMsg_GetData {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_GetData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy mã thành công.
+        /// </summary>
+        public static string User_SuccessMsg_GetNewCode {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_GetNewCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có dữ liệu.
+        /// </summary>
+        public static string User_SuccessMsg_NoContent {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa dữ liệu thành công.
+        /// </summary>
+        public static string User_SuccessMsg_Update {
+            get {
+                return ResourceManager.GetString("User_SuccessMsg_Update", resourceCulture);
             }
         }
     }

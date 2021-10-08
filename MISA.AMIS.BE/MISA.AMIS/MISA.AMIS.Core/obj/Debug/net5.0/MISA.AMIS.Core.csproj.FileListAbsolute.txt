@@ -26,3 +26,17 @@ C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.A
 C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\ref\MISA.AMIS.Core.dll
 C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.pdb
 C:\Users\Admin\Desktop\dropdown\AMIS API LEQUYNHAT\MISA_MF949_Web7_LQNHAT\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.Resources.ResourceCore.resources
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.deps.json
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\bin\Debug\net5.0\MISA.AMIS.Core.pdb
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.Resources.ResourceCore.resources
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.AssemblyInfo.cs
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\ref\MISA.AMIS.Core.dll
+C:\Users\Admin\Desktop\WEB07-MF950-LNTHAO\MISA.AMIS.BE\MISA.AMIS\MISA.AMIS.Core\obj\Debug\net5.0\MISA.AMIS.Core.pdb

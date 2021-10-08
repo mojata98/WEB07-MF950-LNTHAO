@@ -19,7 +19,7 @@
               type="text"
               placeholder="Tìm theo mã, tên nhân viên"
               v-model="keysearch"
-              @input="searchByKeysearch"
+              @keydown.enter="searchByKeysearch"
             />
             <div class="icon-search"></div>
           </div>
@@ -34,7 +34,9 @@
         />
       </div>
       <div class="paginations">
-        <div class="pagination-left">Tổng số: <b> {{this.amountPage}} </b> bản ghi</div>
+        <div class="pagination-left">
+          Tổng số: &nbsp; <b> {{ this.amountPage }} </b>&nbsp; bản ghi
+        </div>
         <div class="pagination-right">
           <div class="combobox-paging">
             <BaseDropdown
@@ -90,8 +92,9 @@ import BaseLoading from "../components/base/BaseLoading.vue";
 import EmployeeForm from "../views/EmployeeForm.vue";
 import BaseDropdown from "../components/base/BaseDropdown.vue";
 import Paginate from "vuejs-paginate";
-import {URL} from '../resources/const';
-import eventBus from '../eventBus';
+import { URL, MESSAGE } from "../resources/const";
+import { STATUS_CODE } from "../resources/enum";
+import eventBus from "../eventBus";
 
 export default {
   data() {
@@ -135,10 +138,10 @@ export default {
     this.getEmployeesByFilter(this.pageIndex, this.pageSize, this.keysearch);
 
     /**------------------------------------
-     * Load lại dữ liệu khi xóa thành công 
+     * Load lại dữ liệu khi xóa thành công
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("reloadData", () =>{
+    eventBus.$on("reloadData", () => {
       this.reloadTableAndFilter();
     });
 
@@ -154,7 +157,7 @@ export default {
      * Nhận sự kiện đóng EmployeeForm từ Popup mode 4
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("closeEmployeeForm", () =>{
+    eventBus.$on("closeEmployeeForm", () => {
       this.hideForm = true;
     });
   },
@@ -167,22 +170,36 @@ export default {
     getEmployeesByFilter() {
       var self = this;
       self.isLoading = true;
-      axios
-        .get(
-          `${URL}/filter?pageIndex=${self.pageIndex}&pageSize=${self.pageSize}&keysearch=${self.keysearch}`
-        )
-        .then((res) => {
-          self.employees = res.data.Data;
-          self.employees.forEach((employee) => {
-            employee.Option = false;
+      try {
+        axios
+          .get(
+            `${URL}/filter?pageIndex=${self.pageIndex}&pageSize=${self.pageSize}&keysearch=${self.keysearch}`
+          )
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              self.employees = res.data.data.Data;
+              self.employees.forEach((employee) => {
+                employee.Option = false;
+              });
+              self.amountPage = res.data.data.TotalRecord;
+              self.numPages = res.data.data.TotalPage;
+              setTimeout(() => (self.isLoading = false), 1000);
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
           });
-          self.amountPage = res.data.TotalRecord;
-          self.numPages = res.data.TotalPage;
-          setTimeout(() => (self.isLoading = false), 1000);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**-------------------------------------------------------
      * Load lại dữ liệu
@@ -193,20 +210,34 @@ export default {
       self.pageIndex = 1;
       self.$refs.textDropdownPaging.setTextDefault();
       self.isLoading = true;
-      axios
-        .get(
-          `${URL}/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
-        )
-        .then((res) => {
-          self.employees = res.data.Data;
-          self.amountPage = res.data.TotalRecord;
-          self.numPages = res.data.TotalPage;
-          self.keysearch = "";
-          setTimeout(() => (self.isLoading = false), 1000);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        axios
+          .get(
+            `${URL}/filter?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
+          )
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              self.employees = res.data.data.Data;
+              self.amountPage = res.data.data.TotalRecord;
+              self.numPages = res.data.data.TotalPage;
+              self.keysearch = "";
+              setTimeout(() => (self.isLoading = false), 1000);
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
     /**-----------------------------------------------------------
      * Tìm kiếm theo thanh search
@@ -267,50 +298,63 @@ export default {
      * Set trạng thái input đơn vị trống
      * CreatedBy: LNT (01/09)
      */
-    departmentNull(){
+    departmentNull() {
       this.employee.DepartmentId = "";
     },
-    /**
+    /**--------------------
      * Sự kiện chuyển trang
      * CreatedBy: LNT (01/09)
      */
-    clickCallback(pageNum){
+    clickCallback(pageNum) {
       this.pageIndex = pageNum;
       this.getEmployeesByFilter(this.pageIndex, this.pageSize, this.keysearch);
     },
-    /**
+    /**--------------------------
      * Xuất dữ liệu ra file Excel
      * CreatedBy: LNT (03/09)
      */
-    exportExcell(){
+    exportExcell() {
       var self = this;
       self.isLoading = true;
-      axios
-        .get(`${URL}/export`)
-        .then((res) => {
-          console.log(res.data);
-          // download file excel về máy
-          window.location = res.data.Data;
-          self.$toast.success("Xuất dữ liệu thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
+      try {
+        axios
+          .get(`${URL}/export`)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              // download file excel về máy
+              window.location = res.data.data;
+              self.$toast.success(MESSAGE.EXPORT_DATA, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+              self.isLoading = false;
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
           });
-          self.isLoading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>

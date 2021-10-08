@@ -120,12 +120,6 @@
   <data name="Dev_ErrorMsg_Check_EmployeeCode" xml:space="preserve">
     <value>Trùng EmployeeCode</value>
   </data>
-  <data name="Dev_ErrorMsg_FormatEmail" xml:space="preserve">
-    <value>Email không đúng định dạng</value>
-  </data>
-  <data name="Dev_ErrorMsg_Null_Email" xml:space="preserve">
-    <value>Email không được phép null</value>
-  </data>
   <data name="Dev_ErrorMsg_Null_FullName" xml:space="preserve">
     <value>FullName không được phép null</value>
   </data>
@@ -147,6 +141,12 @@
   <data name="Dev_NotValid_IdEmployee" xml:space="preserve">
     <value>EmployeeId is not valid</value>
   </data>
+  <data name="Dev_SuccessMsg" xml:space="preserve">
+    <value>Thực hiện thành công</value>
+  </data>
+  <data name="Dev_SuccessMsg_NoContent" xml:space="preserve">
+    <value>Không có dữ liệu trong database</value>
+  </data>
   <data name="Exception_ErrorMsg" xml:space="preserve">
     <value>Có lỗi xảy ra, vui lòng liên hệ cho MISA</value>
   </data>
@@ -158,9 +158,6 @@
   </data>
   <data name="User_ErrorMsg_FormatEmail" xml:space="preserve">
     <value>Email không đúng định dạng</value>
-  </data>
-  <data name="User_ErrorMsg_NoContent" xml:space="preserve">
-    <value>Không có dữ liệu</value>
   </data>
   <data name="User_ErrorMsg_Null_DepartmentCode" xml:space="preserve">
     <value>Mã phòng ban không được phép để trống</value>
@@ -182,5 +179,23 @@
   </data>
   <data name="User_ErrorMsg_Null_PositionCode" xml:space="preserve">
     <value>Mã vị trí không được phép để trống</value>
+  </data>
+  <data name="User_SuccessMsg_Add" xml:space="preserve">
+    <value>Thêm mới thành công</value>
+  </data>
+  <data name="User_SuccessMsg_Delete" xml:space="preserve">
+    <value>Xóa dữ liệu thành công</value>
+  </data>
+  <data name="User_SuccessMsg_GetData" xml:space="preserve">
+    <value>Lấy dữ liệu thành công</value>
+  </data>
+  <data name="User_SuccessMsg_GetNewCode" xml:space="preserve">
+    <value>Lấy mã thành công</value>
+  </data>
+  <data name="User_SuccessMsg_NoContent" xml:space="preserve">
+    <value>Không có dữ liệu</value>
+  </data>
+  <data name="User_SuccessMsg_Update" xml:space="preserve">
+    <value>Sửa dữ liệu thành công</value>
   </data>
 </root>

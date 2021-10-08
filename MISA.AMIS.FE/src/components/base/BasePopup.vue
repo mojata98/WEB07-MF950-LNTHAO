@@ -1,29 +1,28 @@
 <template>
-  <div
-    class="popup-mask"
-    :class="{ 'hidePopup': this.hidePopup }"
-  >
+  <div class="popup-mask" :class="{ hidePopup: this.hidePopup }">
     <div class="popup-container">
       <div class="popup-top">
         <div class="content">
           <div v-if="this.modePopup === 1" class="flex">
             <div class="popup-icon popup-icon-error"></div>
-            <div class="popup-text">{{ this.message }} không được để trống.</div>
+            <div class="popup-text">
+              {{ this.message }} không được để trống.
+            </div>
           </div>
           <div v-else-if="this.modePopup === 2" class="flex">
             <div class="popup-icon popup-icon-warning"></div>
-            <div class="popup-text">Mã nhân viên bị trùng.</div>
+            <div class="popup-text">{{ this.message }}</div>
           </div>
           <div v-else-if="this.modePopup === 3" class="flex">
             <div class="popup-icon popup-icon-warning"></div>
             <div class="popup-text">
-              Bạn có chắc chắn muốn xóa nhân viên có mã nhân viên <b>{{ message }}</b> không?
+              Bạn có muốn xóa nhân viên có mã <b>{{ this.message }}</b> không?
             </div>
           </div>
           <div v-else class="flex">
             <div class="popup-icon popup-icon-information"></div>
             <div class="popup-text">
-              Dữ liệu đã bị thay đổi. Bạn có muốn cất không?
+              {{ this.message }}
             </div>
           </div>
         </div>
@@ -51,9 +50,11 @@
           <button class="button button-cancel" @click="closePopup">
             <b>Không</b>
           </button>
-          <button 
-          style="position: absolute; right: 30px;"   
-          class="button button-add" @click="deleteEmployee">
+          <button
+            style="position: absolute; right: 30px"
+            class="button button-add"
+            @click="deleteEmployee"
+          >
             <b>Có</b>
           </button>
         </div>
@@ -68,10 +69,11 @@
           >
             <b>Không</b>
           </button>
-          <button 
-          class="button button-add" 
-          style="position: absolute; right: 30px;"  
-          @click="closePopupAndSave">
+          <button
+            class="button button-add"
+            style="position: absolute; right: 30px"
+            @click="closePopupAndSave"
+          >
             <b>Có</b>
           </button>
         </div>
@@ -82,8 +84,9 @@
 
 <script>
 import axios from "axios";
-import eventBus from '../../eventBus';
-import { URL } from '../../resources/const';
+import eventBus from "../../eventBus";
+import { URL, MESSAGE } from "../../resources/const";
+import { POPUP_STATE, STATUS_CODE } from "../../resources/enum";
 export default {
   data() {
     return {
@@ -93,7 +96,7 @@ export default {
       // 3 - Warning xóa NV;
       // 4 - Infor dữ liệu bị thay đổi;
       modePopup: 1,
-      message: "",  // Thông điệp cần gửi
+      message: "", // Thông điệp cần gửi
       employee: {}, // Thông tin nhân viên nhận từ các component khác
       hidePopup: true, // ẩn Popup
     };
@@ -101,41 +104,42 @@ export default {
 
   created() {
     /**
-    * Nhận sự kiện xóa từ ContextMenu
-    * CreatedBy: LNT (02/09)
-    */
+     * Nhận sự kiện xóa từ ContextMenu
+     * CreatedBy: LNT (02/09)
+     */
     eventBus.$on("deleteMode", (value) => {
-        this.employee = value;
-        this.modePopup = 3;
-        this.message = value.EmployeeCode;
-        this.hidePopup = false;
+      this.employee = value;
+      this.modePopup = POPUP_STATE.DELETE;
+      this.message = value.EmployeeCode;
+      this.hidePopup = false;
     });
     /**-----------------------------------------------------
      * Nhận sự kiện check dữ liệu bị trống từ EmployeeForm
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("invalidData", (value) =>{
-        this.modePopup = 1;
-        this.message = value;
-        this.hidePopup = false;
+    eventBus.$on("invalidData", (value) => {
+      this.modePopup = POPUP_STATE.VALIDATE;
+      this.message = value;
+      this.hidePopup = false;
     });
     /**-------------------------------------------
      * Nhận sự kiện check trùng mã từ EmployeeForm
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("duplicateEmployeeCode", () =>{
-      this.modePopup = 2;
+    eventBus.$on("duplicateEmployeeCode", () => {
+      this.modePopup = POPUP_STATE.DUPLICATE_EMPLOYEECODE;
       this.hidePopup = false;
+      this.message = MESSAGE.DUPLICATED_DATA;
     });
     /**
      * Nhận sự kiện data bị thay đổi
      * CreatedBy: LNT (02/09)
      */
-    eventBus.$on("updateData", () =>{
-      this.modePopup = 4;
+    eventBus.$on("updateData", () => {
+      this.modePopup = POPUP_STATE.UPDATE_DATA;
+      this.message = MESSAGE.FORM_CHANGED;
       this.hidePopup = false;
     });
-    
   },
 
   methods: {
@@ -150,54 +154,69 @@ export default {
      * Xóa nhân viên khi ấn nút CÓ tại modePopup = 3
      * CreatedBy: LNT (02/09)
      */
-    async deleteEmployee(){
-        var vm = this;
+    async deleteEmployee() {
+      var vm = this;
+      try {
         await axios
-        .delete(`${URL}/${vm.employee.EmployeeId}`)
-        .then((res) => {
-          this.$toast.success("Xóa thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
+          .delete(`${URL}/${vm.employee.EmployeeId}`)
+          .then((res) => {
+            if (res.data.statusCode == STATUS_CODE.SUCCESS) {
+              this.$toast.success(MESSAGE.DELETE_MSG_SUCCESS, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+              console.log(res);
+            } else if (res.data.statusCode == STATUS_CODE.NOT_FOUND) {
+              this.$toast.warning(MESSAGE.DATA_EMPTY, {
+                position: "bottom-right",
+                timeout: 5000,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: true,
+                closeButton: "button",
+                icon: true,
+                rtl: false,
+              });
+            } else {
+              this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+                position: "bottom-right",
+                timeout: 2000,
+              });
+            }
+          })
+          .catch(() => {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
+              position: "bottom-right",
+              timeout: 2000,
+            });
           });
-          console.log(res);
-        })
-        .catch((res) => {
-          this.$toast.error("Xóa không thành công!", {
-            position: "bottom-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
-          });
-          console.log(res);
-        });
+      } catch (error) {
+        console.log(error);
+      }
 
-        this.message = "";
-        this.hidePopup = true;
-        eventBus.$emit("reloadData");
+      this.message = "";
+      this.hidePopup = true;
+      eventBus.$emit("reloadData");
     },
     /**
      * Đóng Popup và EmployeeForm
      * CreatedBy: LNT (02/09)
      */
-    closePopupAndEmployeeForm(){
+    closePopupAndEmployeeForm() {
       this.hidePopup = true;
       eventBus.$emit("closeEmployeeForm");
       eventBus.$emit("resetForm");
@@ -206,10 +225,10 @@ export default {
      * Tạo sự kiện lưu dữ liệu bị thay đổi
      * CreatedBy: LNT (02/09)
      */
-    closePopupAndSave(){
+    closePopupAndSave() {
       this.hidePopup = true;
       eventBus.$emit("closePopupAndSave");
-    }
+    },
   },
 };
 </script>

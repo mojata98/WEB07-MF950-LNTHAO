@@ -151,7 +151,7 @@
     <value>Thông tin {0} đã tồn tại</value>
   </data>
   <data name="Error_Required" xml:space="preserve">
-    <value>thông tin {0} không được để trống</value>
+    <value>Thông tin {0} không được để trống</value>
   </data>
   <data name="Error_Validate" xml:space="preserve">
     <value>Dữ liệu nhập vào không hợp lệ</value>

@@ -41,7 +41,7 @@
               {{ item.text }}
             </th>
             <th
-              style="right: 0; min-width: 100px; border-right: none"
+              style="right: -2px; min-width: 100px; border-right: none"
               class="sticky-cell-header float-right"
             >
               Chức năng

@@ -12,13 +12,20 @@
     background-color: #35bf22;
 }
 
+.button-add:focus {
+    background-color: #35bf22;
+}
+
 .button-add {
     background-color: #2ca01c;
 }
 
 .button-cancel:hover {
     background-color: #d2d3d6;
-    ;
+}
+
+.button-cancel:focus {
+    background-color: #d2d3d6;
 }
 
 .button-cancel {

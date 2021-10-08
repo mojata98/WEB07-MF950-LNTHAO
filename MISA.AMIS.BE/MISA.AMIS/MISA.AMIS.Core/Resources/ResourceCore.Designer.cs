@@ -160,7 +160,7 @@ namespace MISA.AMIS.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to thông tin {0} không được để trống.
+        ///   Looks up a localized string similar to Thông tin {0} không được để trống.
         /// </summary>
         public static string Error_Required {
             get {
